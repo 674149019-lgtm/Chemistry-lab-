@@ -7,7 +7,7 @@
   <style>
     * {
       box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Sarabun', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     body {
       margin: 0;
@@ -19,7 +19,7 @@
     }
     .header-bar {
       width: 100%;
-      max-width: 950px;
+      max-width: 980px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -39,7 +39,7 @@
     }
     .main-lab {
       width: 100%;
-      max-width: 950px;
+      max-width: 980px;
       background: #ffffff;
       border-radius: 12px;
       border: 1px solid #e0e0e0;
@@ -54,10 +54,11 @@
       position: relative;
       margin-bottom: 20px;
     }
+    
     /* Control Sliders */
     .controls-panel {
       display: flex;
-      gap: 30px;
+      gap: 20px;
       height: 100%;
       align-items: center;
     }
@@ -69,33 +70,40 @@
     }
     .slider-label {
       font-weight: bold;
-      font-size: 14px;
+      font-size: 13px;
       text-align: center;
-      margin-bottom: 10px;
-      height: 40px;
+      margin-bottom: 8px;
+      height: 45px;
     }
     .vertical-slider {
       -webkit-appearance: slider-vertical;
       width: 18px;
-      height: 320px;
+      height: 300px;
       cursor: pointer;
     }
     .value-display {
-      margin-top: 10px;
+      margin-top: 8px;
       background: #e8f0fe;
       border: 1px solid #2b6cb0;
       color: #1a365d;
-      padding: 5px 12px;
-      border-radius: 15px;
+      padding: 4px 8px;
+      border-radius: 12px;
       font-weight: bold;
-      font-size: 14px;
+      font-size: 13px;
+      text-align: center;
+    }
+    .sub-value {
+      font-size: 11px;
+      color: #2e7d32;
+      font-weight: normal;
+      margin-top: 2px;
     }
 
     /* Beaker Section */
     .beaker-container {
       position: relative;
-      width: 320px;
-      height: 400px;
+      width: 280px;
+      height: 380px;
       border: 4px solid #b0bec5;
       border-top: none;
       border-bottom-left-radius: 20px;
@@ -123,9 +131,9 @@
     }
     .scale-text {
       position: absolute;
-      left: 10px;
+      left: 8px;
       bottom: 2px;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: bold;
       color: #333;
       background: rgba(255, 255, 255, 0.85);
@@ -136,60 +144,62 @@
       position: absolute;
       top: 10px;
       right: 10px;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.95);
       border: 1px solid #ccc;
-      padding: 6px 12px;
+      padding: 8px 12px;
       border-radius: 8px;
       text-align: right;
-      font-size: 13px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      font-size: 12px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
     }
 
-    /* Meter Section */
-    .meter-container {
+    /* Formula & Calc Section (Right Panel) */
+    .calc-panel {
+      width: 280px;
+      height: 90%;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 12px;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      height: 90%;
-      justify-content: center;
+      justify-content: space-between;
     }
-    .meter-title {
+    .calc-title {
       font-weight: bold;
       font-size: 14px;
-      margin-bottom: 10px;
+      color: #1e293b;
+      border-bottom: 2px solid #3b82f6;
+      padding-bottom: 4px;
+      margin-bottom: 8px;
     }
-    .meter-bar {
-      width: 35px;
-      height: 300px;
-      background: linear-gradient(to top, #ffebee, #d32f2f);
-      border: 2px solid #555;
-      position: relative;
-      border-radius: 3px;
-    }
-    .meter-pointer {
-      position: absolute;
-      left: -12px;
-      bottom: 0%;
-      display: flex;
-      align-items: center;
-      transition: bottom 0.1s ease;
-    }
-    .arrow {
-      width: 0;
-      height: 0;
-      border-top: 8px solid transparent;
-      border-bottom: 8px solid transparent;
-      border-left: 12px solid #d32f2f;
-    }
-    .pointer-box {
+    .formula-box {
       background: #fff;
-      border: 1px solid #d32f2f;
-      padding: 3px 6px;
-      border-radius: 4px;
+      border: 1px solid #e2e8f0;
+      padding: 8px;
+      border-radius: 6px;
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+    .calc-steps {
+      font-family: monospace;
+      background: #0f172a;
+      color: #38bdf8;
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      line-height: 1.5;
+      min-height: 120px;
+    }
+    .result-box {
+      background: #dbeafe;
+      border: 2px solid #2563eb;
+      color: #1e40af;
+      padding: 8px;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 16px;
       font-weight: bold;
-      font-size: 13px;
-      margin-left: 4px;
-      white-space: nowrap;
     }
 
     /* Bottom Control Bar */
@@ -231,7 +241,7 @@
       <strong style="margin-left: 10px; font-size: 18px;">ความเข้มข้นของสารละลาย (Concentration Lab)</strong>
     </div>
     <div>
-      <label>หน่วยเกจ: </label>
+      <label><b>หน่วยที่ต้องการศึกษา:</b> </label>
       <select id="unitSelect" class="select-box" onchange="updateSim()">
         <option value="molarity">1. โมลาริตี (M : mol/L)</option>
         <option value="percent_ww">2. ร้อยละโดยมวล (% w/w)</option>
@@ -249,16 +259,24 @@
     <div class="workspace">
       <!-- Left Sliders -->
       <div class="controls-panel">
+        <!-- Solute Mass Slider -->
         <div class="slider-group">
-          <div class="slider-label">มวลตัวละลาย<br>(m)</div>
-          <input type="range" id="massSlider" class="vertical-slider" min="0" max="100" value="0" step="0.5" oninput="updateSim()">
-          <div class="value-display" id="massVal">0.0 g</div>
+          <div class="slider-label">มวลตัวละลาย<br>(g)</div>
+          <input type="range" id="massSlider" class="vertical-slider" min="0" max="100" value="10" step="0.5" oninput="updateSim()">
+          <div class="value-display">
+            <span id="massVal">10.0 g</span>
+            <div class="sub-value" id="moleVal">= 0.171 mol</div>
+          </div>
         </div>
 
+        <!-- Solvent Volume Slider -->
         <div class="slider-group">
-          <div class="slider-label">ปริมาตรสารละลาย<br>(mL)</div>
-          <input type="range" id="volSlider" class="vertical-slider" min="0" max="500" value="0" step="5" oninput="updateSim()">
-          <div class="value-display" id="volVal">0 mL</div>
+          <div class="slider-label">มวล/ปริมาตรน้ำ<br>(ตัวทำละลาย g)</div>
+          <input type="range" id="volSlider" class="vertical-slider" min="0" max="500" value="250" step="5" oninput="updateSim()">
+          <div class="value-display">
+            <span id="volVal">250 mL</span>
+            <div class="sub-value" id="waterMassVal">= 250 g</div>
+          </div>
         </div>
       </div>
 
@@ -266,7 +284,7 @@
       <div class="beaker-container">
         <div class="liquid" id="liquid"></div>
 
-        <!-- Scale Marksตามที่คุณครูระบุ -->
+        <!-- Scale Marks -->
         <div class="scale-mark" style="bottom: 0%;"><span class="scale-text">0 mL</span></div>
         <div class="scale-mark" style="bottom: 10%;"><span class="scale-text">50 mL</span></div>
         <div class="scale-mark" style="bottom: 20%;"><span class="scale-text">100 mL</span></div>
@@ -277,18 +295,30 @@
 
         <div class="beaker-info">
           <strong id="soluteName">เกลือแกง (NaCl)</strong><br>
-          <small id="molMassText">มวลโมลาร์: 58.44 g/mol</small>
+          <span style="color:#555;">MW = <span id="molMassText">58.44</span> g/mol</span><br>
+          <hr style="margin:4px 0; border:0; border-top:1px solid #eee;">
+          <small>ปริมาตรสารละลายรวม ≈ <b id="totalVolText">254.6 mL</b></small><br>
+          <small>มวลสารละลายรวม = <b id="totalMassText">260.0 g</b></small>
         </div>
       </div>
 
-      <!-- Concentration Gauge Right -->
-      <div class="meter-container">
-        <div class="meter-title" id="meterTitle">ความเข้มข้น (โมลาริตี)</div>
-        <div class="meter-bar">
-          <div class="meter-pointer" id="meterPointer">
-            <div class="arrow"></div>
-            <div class="pointer-box" id="meterVal">0.00 M</div>
-          </div>
+      <!-- Right Panel: Formula & Real-time Steps -->
+      <div class="calc-panel">
+        <div class="calc-title" id="calcTitle">สูตรและการคำนวณ</div>
+        
+        <div class="formula-box" id="formulaText">
+          <b>สูตร:</b> M = จำนวนโมลตัวละลาย (mol) / ปริมาตรสารละลาย (L)
+        </div>
+
+        <div class="calc-steps" id="calcStepsText">
+          คำนวณโมล:<br>
+          n = 10.0 / 58.44 = 0.171 mol<br><br>
+          แทนค่าสูตร:<br>
+          M = 0.171 mol / 0.255 L
+        </div>
+
+        <div class="result-box" id="resultBox">
+          คำนวณได้ = 0.671 M
         </div>
       </div>
     </div>
@@ -296,7 +326,7 @@
     <!-- Bottom Controls -->
     <div class="bottom-bar">
       <div>
-        <label>ตัวละลาย: </label>
+        <label><b>เลือกตัวละลาย:</b> </label>
         <select id="soluteSelect" class="select-box" onchange="updateSim()">
           <option value="NaCl">เกลือแกง (NaCl) - โซเดียมคลอไรด์</option>
           <option value="Sucrose">น้ำตาลทราย (C12H22O11)</option>
@@ -318,92 +348,132 @@
     };
 
     function updateSim() {
-      const mass = parseFloat(document.getElementById('massSlider').value);
-      const vol = parseFloat(document.getElementById('volSlider').value);
+      const mass = parseFloat(document.getElementById('massSlider').value); // g (solute)
+      const waterVol = parseFloat(document.getElementById('volSlider').value); // g/mL (solvent water)
       const soluteKey = document.getElementById('soluteSelect').value;
       const unit = document.getElementById('unitSelect').value;
       const solute = solutes[soluteKey];
 
-      // Update Text Displays
+      // Fundamental Chemistry Calculations
+      const moles = mass / solute.mw; // mol solute
+      const soluteVol = mass / solute.density; // mL solute
+      const waterMass = waterVol; // g (water density = 1 g/mL)
+      const totalMass = mass + waterMass; // g solution
+      const totalVol = waterVol + soluteVol; // mL solution (approx)
+      const waterMoles = waterMass / 18.015; // mol water
+
+      // Update Slider Displays (แสดงหน่วย g อย่างเดียวตามที่ต้องการ)
       document.getElementById('massVal').innerText = mass.toFixed(1) + ' g';
-      document.getElementById('volVal').innerText = vol + ' mL';
+      document.getElementById('moleVal').innerText = '= ' + moles.toFixed(3) + ' mol';
+      
+      document.getElementById('volVal').innerText = waterVol + ' mL';
+      document.getElementById('waterMassVal').innerText = `= ${waterMass} g`;
+
+      // Update Beaker Info
       document.getElementById('soluteName').innerText = solute.name;
-      document.getElementById('molMassText').innerText = 'มวลโมลาร์: ' + solute.mw + ' g/mol';
+      document.getElementById('molMassText').innerText = solute.mw;
+      document.getElementById('totalVolText').innerText = totalVol.toFixed(1) + ' mL';
+      document.getElementById('totalMassText').innerText = totalMass.toFixed(1) + ' g';
 
-      // Update Liquid Level (0 to 500 mL)
-      const liquidPercent = (vol / 500) * 100;
+      // Update Liquid Visual in Beaker
+      const liquidPercent = (totalVol / 500) * 100;
       const liquid = document.getElementById('liquid');
-      liquid.style.height = liquidPercent + '%';
+      liquid.style.height = Math.min(liquidPercent, 100) + '%';
 
-      // Liquid Color Intensity
-      const alpha = vol > 0 ? Math.min(0.15 + (mass / (vol || 1)) * 1.5, 0.85) : 0;
+      const alpha = totalVol > 0 ? Math.min(0.1 + (mass / (totalVol || 1)) * 1.2, 0.85) : 0;
       const c = solute.color;
       liquid.style.backgroundColor = `rgba(${c[0]}, ${c[1]}, ${c[2]}, ${alpha})`;
 
-      // Calculations & Gauge Update
-      let conc = 0;
-      let displayStr = '0.00';
-      let maxGauge = 1.0;
+      // Calculations & Detailed Formula Steps
+      let formula = '';
+      let steps = '';
+      let resultStr = '';
 
-      if (vol > 0) {
-        const liters = vol / 1000;
-        const moles = mass / solute.mw;
-        const solventMassKg = (vol / 1000); // ประมาณน้ำ 1 L = 1 kg
-
-        if (unit === 'molarity') {
-          conc = moles / liters;
-          displayStr = conc.toFixed(3) + ' M';
-          maxGauge = 4.0;
-          document.getElementById('meterTitle').innerText = 'ความเข้มข้น (โมลาริตี)';
-        } else if (unit === 'percent_ww') {
-          conc = (mass / (vol + mass)) * 100;
-          displayStr = conc.toFixed(2) + ' % w/w';
-          maxGauge = 30.0;
-          document.getElementById('meterTitle').innerText = 'ความเข้มข้น (% w/w)';
-        } else if (unit === 'percent_wv') {
-          conc = (mass / vol) * 100;
-          displayStr = conc.toFixed(2) + ' % w/v';
-          maxGauge = 30.0;
-          document.getElementById('meterTitle').innerText = 'ความเข้มข้น (% w/v)';
-        } else if (unit === 'percent_v') {
-          const soluteVol = mass / solute.density; // แปลงกรัมเป็นปริมาตรโดยใช้ความหนาแน่น
-          conc = (soluteVol / (vol + soluteVol)) * 100;
-          displayStr = conc.toFixed(2) + ' % v/v';
-          maxGauge = 30.0;
-          document.getElementById('meterTitle').innerText = 'ความเข้มข้น (% v/v)';
-        } else if (unit === 'ppm') {
-          conc = (mass / (vol + mass)) * 1000000;
-          displayStr = Math.round(conc) + ' ppm';
-          maxGauge = 100000;
-          document.getElementById('meterTitle').innerText = 'ความเข้มข้น (ppm)';
-        } else if (unit === 'ppb') {
-          conc = (mass / (vol + mass)) * 1000000000;
-          displayStr = Math.round(conc) + ' ppb';
-          maxGauge = 100000000;
-          document.getElementById('meterTitle').innerText = 'ความเข้มข้น (ppb)';
-        } else if (unit === 'molality') {
-          conc = moles / solventMassKg;
-          displayStr = conc.toFixed(3) + ' m';
-          maxGauge = 4.0;
-          document.getElementById('meterTitle').innerText = 'ความเข้มข้น (โมแลลิตี)';
-        } else if (unit === 'mole_fraction') {
-          const waterMoles = (vol / 18.015); // จำนวนโมลของน้ำ (สมมติความหนาแน่นน้ำ 1 g/mL)
-          conc = moles / (moles + waterMoles);
-          displayStr = conc.toFixed(4);
-          maxGauge = 0.5;
-          document.getElementById('meterTitle').innerText = 'เศษส่วนโมล (X)';
-        }
+      if (waterVol === 0 && mass === 0) {
+        document.getElementById('calcStepsText').innerText = 'กรุณาปรับมวลตัวละลาย หรือปริมาตรน้ำ';
+        document.getElementById('resultBox').innerText = 'ความเข้มข้น = 0';
+        return;
       }
 
-      // Pointer Position Percentage
-      const pointerPos = Math.min(Math.max((conc / maxGauge) * 100, 0), 100);
-      document.getElementById('meterPointer').style.bottom = pointerPos + '%';
-      document.getElementById('meterVal').innerText = displayStr;
+      if (unit === 'molarity') {
+        document.getElementById('calcTitle').innerText = 'โมลาริตี (Molarity : M)';
+        formula = '<b>สูตร:</b> M = โมลตัวละลาย (mol) / ปริมาตรสารละลาย (L)';
+        const L_solution = totalVol / 1000;
+        const M = L_solution > 0 ? (moles / L_solution) : 0;
+        steps = `1. หาโมลตัวละลาย (n):\n   n = ${mass}g / ${solute.mw} = ${moles.toFixed(3)} mol\n\n` +
+                `2. แปลงปริมาตรสารละลายเป็น L:\n   V = ${totalVol.toFixed(1)} mL / 1000 = ${L_solution.toFixed(3)} L\n\n` +
+                `3. แทนค่าสูตร:\n   M = ${moles.toFixed(3)} mol / ${L_solution.toFixed(3)} L`;
+        resultStr = `ความเข้มข้น = ${M.toFixed(3)} M (mol/L)`;
+
+      } else if (unit === 'percent_ww') {
+        document.getElementById('calcTitle').innerText = 'ร้อยละโดยมวล (% w/w)';
+        formula = '<b>สูตร:</b> % w/w = (มวลตัวละลาย / มวลสารละลาย) × 100';
+        const pct_ww = totalMass > 0 ? (mass / totalMass) * 100 : 0;
+        steps = `1. หามวลสารละลายรวม:\n   ${mass}g (ตัวละลาย) + ${waterMass}g (น้ำ) = ${totalMass.toFixed(1)} g\n\n` +
+                `2. แทนค่าสูตร:\n   % w/w = (${mass} / ${totalMass.toFixed(1)}) × 100`;
+        resultStr = `% w/w = ${pct_ww.toFixed(2)} %`;
+
+      } else if (unit === 'percent_wv') {
+        document.getElementById('calcTitle').innerText = 'ร้อยละโดยมวล/ปริมาตร (% w/v)';
+        formula = '<b>สูตร:</b> % w/v = (มวลตัวละลาย (g) / ปริมาตรสารละลาย (mL)) × 100';
+        const pct_wv = totalVol > 0 ? (mass / totalVol) * 100 : 0;
+        steps = `1. ปริมาตรสารละลายรวม = ${totalVol.toFixed(1)} mL\n\n` +
+                `2. แทนค่าสูตร:\n   % w/v = (${mass}g / ${totalVol.toFixed(1)}mL) × 100`;
+        resultStr = `% w/v = ${pct_wv.toFixed(2)} %`;
+
+      } else if (unit === 'percent_v') {
+        document.getElementById('calcTitle').innerText = 'ร้อยละโดยปริมาตร (% v/v)';
+        formula = '<b>สูตร:</b> % v/v = (ปริมาตรตัวละลาย / ปริมาตรสารละลาย) × 100';
+        const pct_v = totalVol > 0 ? (soluteVol / totalVol) * 100 : 0;
+        steps = `1. แปลงมวลตัวละลายเป็นปริมาตร (V=m/d):\n   V = ${mass}g / ${solute.density} = ${soluteVol.toFixed(1)} mL\n\n` +
+                `2. แทนค่าสูตร:\n   % v/v = (${soluteVol.toFixed(1)}mL / ${totalVol.toFixed(1)}mL) × 100`;
+        resultStr = `% v/v = ${pct_v.toFixed(2)} %`;
+
+      } else if (unit === 'ppm') {
+        document.getElementById('calcTitle').innerText = 'ส่วนในล้านส่วน (ppm)';
+        formula = '<b>สูตร:</b> ppm = (มวลตัวละลาย / มวลสารละลาย) × 10⁶';
+        const ppm = totalMass > 0 ? (mass / totalMass) * 1000000 : 0;
+        steps = `1. มวลสารละลายรวม = ${totalMass.toFixed(1)} g\n\n` +
+                `2. แทนค่าสูตร:\n   ppm = (${mass} / ${totalMass.toFixed(1)}) × 1,000,000`;
+        resultStr = `ความเข้มข้น = ${Math.round(ppm)} ppm`;
+
+      } else if (unit === 'ppb') {
+        document.getElementById('calcTitle').innerText = 'ส่วนในพันล้านส่วน (ppb)';
+        formula = '<b>สูตร:</b> ppb = (มวลตัวละลาย / มวลสารละลาย) × 10⁹';
+        const ppb = totalMass > 0 ? (mass / totalMass) * 1000000000 : 0;
+        steps = `1. มวลสารละลายรวม = ${totalMass.toFixed(1)} g\n\n` +
+                `2. แทนค่าสูตร:\n   ppb = (${mass} / ${totalMass.toFixed(1)}) × 1,000,000,000`;
+        resultStr = `ความเข้มข้น = ${Math.round(ppb)} ppb`;
+
+      } else if (unit === 'molality') {
+        document.getElementById('calcTitle').innerText = 'โมแลลิตี (Molality : m)';
+        formula = '<b>สูตร:</b> m = โมลตัวละลาย (mol) / มวลตัวทำละลาย (kg)';
+        const kg_solvent = waterMass / 1000;
+        const m_val = kg_solvent > 0 ? (moles / kg_solvent) : 0;
+        steps = `1. โมลตัวละลาย (n) = ${moles.toFixed(3)} mol\n\n` +
+                `2. แปลงมวลน้ำเป็น kg:\n   ${waterMass}g / 1000 = ${kg_solvent.toFixed(3)} kg\n\n` +
+                `3. แทนค่าสูตร:\n   m = ${moles.toFixed(3)} mol / ${kg_solvent.toFixed(3)} kg`;
+        resultStr = `ความเข้มข้น = ${m_val.toFixed(3)} m (mol/kg)`;
+
+      } else if (unit === 'mole_fraction') {
+        document.getElementById('calcTitle').innerText = 'เศษส่วนโมล (Mole Fraction : X)';
+        formula = '<b>สูตร:</b> X = โมลตัวละลาย / (โมลตัวละลาย + โมลน้ำ)';
+        const totalMoles = moles + waterMoles;
+        const x_val = totalMoles > 0 ? (moles / totalMoles) : 0;
+        steps = `1. โมลตัวละลาย = ${moles.toFixed(3)} mol\n` +
+                `2. โมลน้ำ = ${waterMass}g / 18.015 = ${waterMoles.toFixed(2)} mol\n\n` +
+                `3. แทนค่าสูตร:\n   X = ${moles.toFixed(3)} / (${moles.toFixed(3)} + ${waterMoles.toFixed(2)})`;
+        resultStr = `เศษส่วนโมล (X) = ${x_val.toFixed(4)}`;
+      }
+
+      document.getElementById('formulaText').innerHTML = formula;
+      document.getElementById('calcStepsText').innerText = steps;
+      document.getElementById('resultBox').innerText = resultStr;
     }
 
     function resetSim() {
-      document.getElementById('massSlider').value = 0;
-      document.getElementById('volSlider').value = 0;
+      document.getElementById('massSlider').value = 10;
+      document.getElementById('volSlider').value = 250;
       updateSim();
     }
 
