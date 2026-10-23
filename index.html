@@ -1,15 +1,5 @@
-นี่คือชุดโค้ดเว็บแอปพลิเคชัน (HTML/CSS/JavaScript) ฉบับสมบูรณ์สำหรับสื่อจำลองเสมือนจริงเรื่อง ความเข้มข้นของสารละลาย (Concentration Lab) พร้อมคำแนะนำแพลตฟอร์มและลิงก์สำหรับนำไปใช้สร้างหรือเล่นแอปค่ะ
-🌐 1. ลิงก์สำหรับนำไปเปิดใช้งาน/นำไปสร้างต่อ
- * เปิดทดลองใช้งานโค้ดนี้ได้ทันทีผ่าน Online Code Editor:
-   * คุณครูสามารถก๊อปปี้โค้ดด้านล่างนี้ ไปวางในเว็บเล่นโค้ดฟรีได้ทันทีโดยไม่ต้องติดตั้งโปรแกรม เช่น:
-     * CodePen.io (นำโค้ดไปวางในช่อง HTML)
-     * JSFiddle.net
-     * Replit.com
- * ต้นแบบการพัฒนาสื่อจริง (PhET Interactive Simulations):
-   * PhET Concentration Simulation: https://phet.colorado.edu/en/simulations/concentration
-   * PhET Molarity Simulation: https://phet.colorado.edu/en/simulations/molarity
-💻 2. โค้ดฉบับสมบูรณ์ (HTML / CSS / JavaScript)
-คุณครูสามารถบันทึกไฟล์นี้เป็นชื่อ index.html แล้วเปิดใช้งานบนอุปกรณ์ใดก็ได้ (iPad, PC, Smart Board) ค่ะ:
+ขออภัยด้วยนะคะ! สำหรับหน่วย ร้อยละโดยปริมาตร (% v/v), ppb (ส่วนในพันล้านส่วน) และ เศษส่วนโมล (Mole Fraction) ที่ขาดหายไปในตัวเลือกเมนูดรอปดาวน์ ฉันได้เพิ่มหน่วยความเข้มข้นทั้ง 3 นี้เข้าไปในชุดโค้ดฉบับสมบูรณ์ให้ครบถ้วนแล้วค่ะ
+คุณครูสามารถนำโค้ดด้านล่างนี้ไป วางทับแทนที่โค้ดเดิม ในไฟล์ index.html บน GitHub ของคุณครูได้เลยนะคะ (โดยกดเข้าไปที่ไฟล์เดิม -> กดไอคอนดินสอ Edit -> วางโค้ดใหม่ทับ -> แล้วกด Commit changes) ระบบจะอัปเดตหน้าเว็บให้อัตโนมัติค่ะ!
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -246,10 +236,13 @@
       <label>หน่วยเกจ: </label>
       <select id="unitSelect" class="select-box" onchange="updateSim()">
         <option value="molarity">1. โมลาริตี (M : mol/L)</option>
-        <option value="percent_wv">2. ร้อยละโดยมวล/ปริมาตร (% w/v)</option>
-        <option value="percent_ww">3. ร้อยละโดยมวล (% w/w)</option>
-        <option value="ppm">4. ส่วนในล้านส่วน (ppm)</option>
-        <option value="molality">5. โมแลลิตี (m : mol/kg)</option>
+        <option value="percent_ww">2. ร้อยละโดยมวล (% w/w)</option>
+        <option value="percent_wv">3. ร้อยละโดยมวล/ปริมาตร (% w/v)</option>
+        <option value="percent_v">4. ร้อยละโดยปริมาตร (% v/v)</option>
+        <option value="ppm">5. ส่วนในล้านส่วน (ppm)</option>
+        <option value="ppb">6. ส่วนในพันล้านส่วน (ppb)</option>
+        <option value="molality">7. โมแลลิตี (m : mol/kg)</option>
+        <option value="mole_fraction">8. เศษส่วนโมล (Mole Fraction)</option>
       </select>
     </div>
   </div>
@@ -275,7 +268,7 @@
       <div class="beaker-container">
         <div class="liquid" id="liquid"></div>
 
-        <!-- Scale Marks -->
+        <!-- Scale Marksตามที่คุณครูระบุ -->
         <div class="scale-mark" style="bottom: 0%;"><span class="scale-text">0 mL</span></div>
         <div class="scale-mark" style="bottom: 10%;"><span class="scale-text">50 mL</span></div>
         <div class="scale-mark" style="bottom: 20%;"><span class="scale-text">100 mL</span></div>
@@ -320,10 +313,10 @@
 
   <script>
     const solutes = {
-      NaCl: { name: 'เกลือแกง (NaCl)', mw: 58.44, color: [220, 50, 50] },
-      Sucrose: { name: 'น้ำตาลทราย (C12H22O11)', mw: 342.3, color: [200, 160, 100] },
-      CuSO4: { name: 'จุนสี (CuSO4)', mw: 159.6, color: [30, 100, 230] },
-      NaHCO3: { name: 'เบกกิ้งโซดา (NaHCO3)', mw: 84.01, color: [100, 180, 100] }
+      NaCl: { name: 'เกลือแกง (NaCl)', mw: 58.44, density: 2.16, color: [220, 50, 50] },
+      Sucrose: { name: 'น้ำตาลทราย (C12H22O11)', mw: 342.3, density: 1.59, color: [200, 160, 100] },
+      CuSO4: { name: 'จุนสี (CuSO4)', mw: 159.6, density: 3.60, color: [30, 100, 230] },
+      NaHCO3: { name: 'เบกกิ้งโซดา (NaHCO3)', mw: 84.01, density: 2.20, color: [100, 180, 100] }
     };
 
     function updateSim() {
@@ -357,32 +350,50 @@
       if (vol > 0) {
         const liters = vol / 1000;
         const moles = mass / solute.mw;
+        const solventMassKg = (vol / 1000); // ประมาณน้ำ 1 L = 1 kg
 
         if (unit === 'molarity') {
           conc = moles / liters;
           displayStr = conc.toFixed(3) + ' M';
           maxGauge = 4.0;
           document.getElementById('meterTitle').innerText = 'ความเข้มข้น (โมลาริตี)';
-        } else if (unit === 'percent_wv') {
-          conc = (mass / vol) * 100;
-          displayStr = conc.toFixed(2) + ' %';
-          maxGauge = 30.0;
-          document.getElementById('meterTitle').innerText = 'ความเข้มข้น (% w/v)';
         } else if (unit === 'percent_ww') {
           conc = (mass / (vol + mass)) * 100;
-          displayStr = conc.toFixed(2) + ' %';
+          displayStr = conc.toFixed(2) + ' % w/w';
           maxGauge = 30.0;
           document.getElementById('meterTitle').innerText = 'ความเข้มข้น (% w/w)';
+        } else if (unit === 'percent_wv') {
+          conc = (mass / vol) * 100;
+          displayStr = conc.toFixed(2) + ' % w/v';
+          maxGauge = 30.0;
+          document.getElementById('meterTitle').innerText = 'ความเข้มข้น (% w/v)';
+        } else if (unit === 'percent_v') {
+          const soluteVol = mass / solute.density; // แปลงกรัมเป็นปริมาตรโดยใช้ความหนาแน่น
+          conc = (soluteVol / (vol + soluteVol)) * 100;
+          displayStr = conc.toFixed(2) + ' % v/v';
+          maxGauge = 30.0;
+          document.getElementById('meterTitle').innerText = 'ความเข้มข้น (% v/v)';
         } else if (unit === 'ppm') {
           conc = (mass / (vol + mass)) * 1000000;
           displayStr = Math.round(conc) + ' ppm';
           maxGauge = 100000;
           document.getElementById('meterTitle').innerText = 'ความเข้มข้น (ppm)';
+        } else if (unit === 'ppb') {
+          conc = (mass / (vol + mass)) * 1000000000;
+          displayStr = Math.round(conc) + ' ppb';
+          maxGauge = 100000000;
+          document.getElementById('meterTitle').innerText = 'ความเข้มข้น (ppb)';
         } else if (unit === 'molality') {
-          conc = moles / (vol / 1000);
+          conc = moles / solventMassKg;
           displayStr = conc.toFixed(3) + ' m';
           maxGauge = 4.0;
           document.getElementById('meterTitle').innerText = 'ความเข้มข้น (โมแลลิตี)';
+        } else if (unit === 'mole_fraction') {
+          const waterMoles = (vol / 18.015); // จำนวนโมลของน้ำ (สมมติความหนาแน่นน้ำ 1 g/mL)
+          conc = moles / (moles + waterMoles);
+          displayStr = conc.toFixed(4);
+          maxGauge = 0.5;
+          document.getElementById('meterTitle').innerText = 'เศษส่วนโมล (X)';
         }
       }
 
