@@ -58,7 +58,7 @@
     /* Control Sliders */
     .controls-panel {
       display: flex;
-      gap: 20px;
+      gap: 15px;
       height: 100%;
       align-items: center;
     }
@@ -68,22 +68,26 @@
       align-items: center;
       height: 90%;
       background: #f8fafc;
-      padding: 10px;
+      padding: 10px 8px;
       border-radius: 8px;
       border: 1px solid #e2e8f0;
+      width: 110px;
     }
     .slider-label {
       font-weight: bold;
-      font-size: 13px;
+      font-size: 12px;
       text-align: center;
       margin-bottom: 8px;
-      height: 40px;
+      height: 48px;
       color: #1e293b;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
     .vertical-slider {
       -webkit-appearance: slider-vertical;
       width: 18px;
-      height: 280px;
+      height: 270px;
       cursor: pointer;
     }
     .value-display {
@@ -91,7 +95,7 @@
       background: #ffffff;
       border: 1px solid #cbd5e1;
       color: #0f172a;
-      padding: 6px 10px;
+      padding: 6px 4px;
       border-radius: 8px;
       font-weight: bold;
       font-size: 13px;
@@ -257,12 +261,15 @@
 
   <div class="main-lab">
     <div class="workspace">
-      <!-- Left Sliders: Solute & Solvent Separated -->
+      <!-- Left Sliders: Solute & Solvent Separated with Clear Labels -->
       <div class="controls-panel">
         
         <!-- 1. Solute Section -->
         <div class="slider-group">
-          <div class="slider-label">ตัวละลาย<br>(Solute)</div>
+          <div class="slider-label">
+            <span>มวลตัวละลาย</span>
+            <small style="color:#64748b;">(Solute, g)</small>
+          </div>
           <input type="range" id="massSlider" class="vertical-slider" min="0" max="100" value="10" step="0.5" oninput="updateSim()">
           <div class="value-display">
             <span id="massVal">10.0 g</span>
@@ -272,7 +279,10 @@
 
         <!-- 2. Solvent Section -->
         <div class="slider-group">
-          <div class="slider-label">ตัวทำละลาย (น้ำ)<br>(Solvent)</div>
+          <div class="slider-label">
+            <span>ปริมาตร/มวลน้ำ</span>
+            <small style="color:#64748b;">(Solvent, mL/g)</small>
+          </div>
           <input type="range" id="volSlider" class="vertical-slider" min="0" max="500" value="250" step="5" oninput="updateSim()">
           <div class="value-display">
             <span id="volVal">250 mL</span>
